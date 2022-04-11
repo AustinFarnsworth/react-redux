@@ -2,16 +2,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import App from "./App";
-import allReducers from "./reducers";
-import {createStore} from "redux";
+// import allReducers from "./reducers";
+import termSlice from "./slice/termSlice";
+import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from "react-redux";
 
 // STORE -> GLOBALIZED STATE
 
-const store = createStore(
-  allReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = configureStore({
+  reducer: {
+    term: termSlice.reducer,
+  },
+});
+
+// const store = createStore(
+//   allReducers,
+//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+// );
 
 ReactDOM.render(
   <Provider store={store}>
