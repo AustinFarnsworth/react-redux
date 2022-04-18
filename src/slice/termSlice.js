@@ -4,7 +4,9 @@ const termSlice = createSlice({
   name: "term",
   initialState: "",
   reducers: {
-    saveTerm: (state, action) => action.payload,
+    saveTerm: (state, action) => {
+      state = action.payload;
+    },
   },
 });
 

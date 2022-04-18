@@ -11,28 +11,35 @@ function Page1() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setTerm("");
 
     dispatch(termSlice.actions.saveTerm(term));
   };
+
+  function submit(e) {
+    e.preventDefault();
+    console.log(term);
+  }
 
   return (
     <div>
       <h3>Welcome to Page 1</h3>
 
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
           type="text"
-          onClick={(e) => {
-            setTerm(e.target.value);
-          }}
+          value={term}
+          onChange={(e) => setTerm(e.target.value)}
         />
-        <button type="submit">Submit</button>
-
-        <div className="response">
-          <span> Term: {term}</span>
-        </div>
-        {/* <p> Id: {id}</p> */}
+        <button type="submit" onClick={handleSubmit}>
+          Submit
+        </button>
       </form>
+
+      <div className="response">
+        <span> Term: {term}</span>
+      </div>
+      {/* <p> Id: {id}</p> */}
     </div>
   );
 }
